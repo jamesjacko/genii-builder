@@ -1,33 +1,79 @@
-.App {
+body{
+  background: #1E1F25;
+  margin: 0;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+h1{
+  color:#8699B1;
+  background: #2D3039;
+  margin:0 0 10px;
+  line-height: 50px;
+  padding: 0 10px;
+  font-weight:normal;
+  font-size: 1.5em;
+}
+.panel{
+  border-radius: 6px;
+  margin:10px 0 10px 10px;
+  background: #131418;
+  border: 1px solid #1F2127;
+  min-height:calc(100vh - 82px);
+}
+.left{
+  float:left;
+  width:calc(25% - 10px);
+}
+.left.main{
+  width: calc(50% - 28px);
+}
+h2{
+  background: #2D3039;
+  border-radius: 6px 6px 0 0;
+  margin:0;
+  border:1px solid #131418;
+  line-height: 40px;
+  font-size: 1.2em;
+  padding:0 10px;
+  color:#8699B1;
+}
+.property:before{
+  width:100%;
+  line-height: 40px;
+  content:attr(data-name);
+  padding:0 0 0 20px;
+  font-weight: bold;
+}
+.property:after{
+  content:"-";
+  display: block;
+  position: absolute;
+  top:0px;
+  right:0px;
+  line-height: 40px;
+  padding-right: 20px;
+}
+.property.closed:after{
+  content:"+";
+}
+.property, .gene{
+  color: #8699B1;
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  background: #2D3039;
+  margin:5px;
+  position: relative;
+}
+.property li, .gene li{
+  width:auto;
+  padding:10px;
   text-align: center;
+  border-left:4px solid #DDD;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.property.closed{
+  overflow:hidden;
+  height:40px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gene{
+  height:200px;
 }
