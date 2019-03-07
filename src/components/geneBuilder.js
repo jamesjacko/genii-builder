@@ -38,10 +38,6 @@ class GeneBuilder extends Component{
     }
   }
 
-  componentDidUpdate(){
-    window.localStorage.setItem("genes", JSON.stringify(this.state.genes));
-  }
-
   onDragOver(event){
     event.stopPropagation();
     event.preventDefault();
@@ -67,6 +63,7 @@ class GeneBuilder extends Component{
   }
 
   render(){
+    window.localStorage.setItem("genes", JSON.stringify(this.state.genes));
     return(
       <div className="panel left geneBuilder">
         <h2 onClick={ (e) => this.addGene(e) }>Genes</h2>
