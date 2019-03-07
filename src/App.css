@@ -108,6 +108,9 @@ h2{
 .gene{
   height:40px;
 }
+.gene.open{
+  height:calc(calc(1em + 23px) * 5);
+}
 .gene li{
   width:20%;
   padding:0px;
@@ -117,4 +120,16 @@ h2{
   cursor:pointer;
   float: left;
   text-indent: -9999px;
+}
+.gene.open li{
+  width:calc(100% - 38px);
+  margin: 0;
+  padding:10px;
+  text-align: center;
+  border-left:8px solid #DDD;
+  cursor:pointer;
+  background-color: #FFF;
+  float: none;
+  text-indent: 0;
+  height:auto;
 }

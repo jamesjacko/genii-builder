@@ -17,6 +17,11 @@ class Gene extends Component{
     this.renderGene();
   }
 
+  openGene(event){
+    event.preventDefault();
+    event.target.classList.toggle("open");
+  }
+
   renderGene(){
     return Object.keys(this.state).map((item, i) => {
       if(Object.values(this.state)[i] !== -1){
@@ -59,7 +64,8 @@ class Gene extends Component{
         draggable
         onDragStart={ (e) => this.onDragStart(e) }
         onDragOver={ (e) => this.onDragOver(e) }
-        onDrop={ (e) => this.onDrop(e) }>
+        onDrop={ (e) => this.onDrop(e) }
+        onClick={ (e) => this.openGene(e) }>
         { this.renderGene() }
       </ul>
     )
