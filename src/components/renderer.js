@@ -27,12 +27,10 @@ class Renderer extends Component{
 
   renderMurvs(){
     if(this.state.genes.length > 0){
-      console.log(this.state);
       return this.state.genes.map((item, index) => {
         for (var i = 0; i < Object.values(item).length; i++) {
           item[Object.keys(item)[i]] = Gene[Object.keys(item)[i]][Object.values(item)[i]];
         }
-        console.log(item);
         return(
           <MURV config={ Config } gene={ new Gene(item) } key={ "vis" + index } />
         )

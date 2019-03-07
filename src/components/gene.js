@@ -4,13 +4,7 @@ import { Gene as MurvGene } from 'murv-component';
 class Gene extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      path_mode: -1,
-      shape: -1,
-      color: -1,
-      path_points: -1,
-      object_size: -1
-    };
+    console.log(props);
   }
 
   componentDidMount(){
@@ -19,43 +13,33 @@ class Gene extends Component{
 
   openGene(event){
     event.preventDefault();
-    let t = (event.target.localName === "li")? event.target.parentElement : event.target;
+    let t = (event.target.localName === "li") ? event.target.parentElement : event.target;
     t.classList.toggle("open");
   }
 
+  shouldComponentUpdate(newProps){
+    this.props = newProps;
+    return true;
+  }
+
   renderGene(){
-    return Object.keys(this.state).map((item, i) => {
-      if(Object.values(this.state)[i] !== -1){
-        return(
-          <li
-            key={ i }
-            className={ "color" +
-              MurvGene[Object.keys(this.state)[i]][Object.values(this.state)[i]] }
-            >
-            { Object.values(this.state)[i].toLowerCase() }
-          </li>
-        )
-      } else {
-        return;
-      }
+    return Object.keys(this.props).map((item, i) => {
+      return(
+        <li
+          key={ i }
+          className={ "color" +
+            MurvGene[Object.keys(this.props)[i]][Object.values(this.props)[i]] }
+          >
+          { Object.values(this.props)[i].toLowerCase() }
+        </li>
+      )
     })
   }
 
   onDragStart(event){
-    event.dataTransfer.setData('gene', JSON.stringify(this.state));
+    event.dataTransfer.setData('gene', JSON.stringify(this.props));
   }
 
-  onDrop(event){
-    event.persist();
-    if(event.dataTransfer.getData('id')){
-      if(JSON.parse(event.dataTransfer.getData('id')).mode === 1){
-        let data = JSON.parse(event.dataTransfer.getData('id'));
-        this.setState({
-            [data.prop]: data.item
-        });
-      }
-    }
-  }
 
   onDragOver(event){
     event.stopPropagation();
@@ -69,7 +53,6 @@ class Gene extends Component{
         draggable
         onDragStart={ (e) => this.onDragStart(e) }
         onDragOver={ (e) => this.onDragOver(e) }
-        onDrop={ (e) => this.onDrop(e) }
         onClick={ (e) => this.openGene(e) }>
         { this.renderGene() }
       </ul>

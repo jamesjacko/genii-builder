@@ -10,7 +10,6 @@ class Property extends Component{
   onDragStart(event, id){
     event.persist();
     event.stopPropagation();
-    console.log('dragstart', event)
     event.dataTransfer.setData('id', JSON.stringify(id));
   }
 
