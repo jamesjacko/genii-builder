@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Gene as MurvGene } from 'murv-component';
 
 class Gene extends Component{
-
-
   openGene(event){
     event.preventDefault();
     let t = (event.target.localName === "li") ? event.target.parentElement : event.target;

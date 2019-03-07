@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MURV, { Gene } from 'murv-component';
 import Config from '../config.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
 
 class Renderer extends Component{
 
@@ -34,6 +36,10 @@ class Renderer extends Component{
         return(
           <div className="vis" key={ "vis" + index }>
             <MURV config={ Config } gene={ new Gene(item) } />
+            <div class="overlay">
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <FontAwesomeIcon icon={faThumbsDown} />
+            </div>
           </div>
         )
       });

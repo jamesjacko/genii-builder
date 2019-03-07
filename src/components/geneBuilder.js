@@ -18,7 +18,8 @@ class GeneBuilder extends Component{
 
   onDrop(event){
     event.persist();
-    let t = (event.target.localName === "ul")? event.target.parentElement: event.parentElement.parentElement;
+    console.log(event);
+    let t = (event.target.localName === "ul")? event.target.parentElement: event.target.parentElement.parentElement;
     let index = t.getAttribute('data-index');
     if(event.dataTransfer.getData('id')){
       if(JSON.parse(event.dataTransfer.getData('id')).mode === 1){
