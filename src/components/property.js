@@ -8,7 +8,9 @@ class Property extends Component{
   // }
 
   onDragStart(event, id){
-    console.log('dragstart', id)
+    event.persist();
+    event.stopPropagation();
+    console.log('dragstart', event)
     event.dataTransfer.setData('id', JSON.stringify(id));
   }
 
@@ -18,7 +20,7 @@ class Property extends Component{
       return(
         <li
         key={ this.props.value + i }
-        style={ { borderColor: colors[i] } }
+        style={ { borderLeftColor: colors[i] } }
         draggable
         onDragStart={ (e) => this.onDragStart(e, {prop: this.props.value, value: i, item: item }) }
         >

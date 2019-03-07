@@ -1,23 +1,22 @@
 body{
-  background: #1E1F25;
+  background: #F8F9FA;
   margin: 0;
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  color:#666;
 }
 h1{
-  color:#8699B1;
-  background: #2D3039;
   margin:0 0 10px;
-  line-height: 50px;
+  line-height: 60px;
   padding: 0 10px;
   font-weight:normal;
-  font-size: 1.5em;
+  font-size: 1.2em;
+  border-bottom: 1px solid #CCC;
 }
 .panel{
-  border-radius: 6px;
   margin:10px 0 10px 10px;
-  background: #131418;
-  border: 1px solid #1F2127;
-  min-height:calc(100vh - 82px);
+  background: #FFF;
+  min-height:calc(100vh - 92px);
+  box-shadow: 1px 1px 1px #CCC;
 }
 .left{
   float:left;
@@ -27,53 +26,95 @@ h1{
   width: calc(50% - 28px);
 }
 h2{
-  background: #2D3039;
-  border-radius: 6px 6px 0 0;
   margin:0;
-  border:1px solid #131418;
+  border-bottom:1px solid #DDD;
   line-height: 40px;
-  font-size: 1.2em;
+  font-size: 1em;
+  font-weight: normal;
   padding:0 10px;
-  color:#8699B1;
+  position: relative;
 }
 .property:before{
   width:100%;
   line-height: 40px;
   content:attr(data-name);
   padding:0 0 0 20px;
-  font-weight: bold;
+  font-weight: normal;
+  position: absolute;
+  left:0;
+  top:0;
 }
-.property:after{
+.property:after, .geneBuilder h2:after{
   content:"-";
   display: block;
   position: absolute;
-  top:0px;
-  right:0px;
-  line-height: 40px;
-  padding-right: 20px;
+  top:12px;
+  right:10px;
+  width:20px;
+  height:20px;
+  line-height: 20px;
+  font-size: 14px;
+  padding:0;
+  margin: 0;
+  background: #CE5B53;
+  border-radius: 10px;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
+}
+.geneBuilder h2:after{
+  content:"+";
+  background: #FFC107;
+  font-family: "pt-sans-narrow", sans-serif;
 }
 .property.closed:after{
-  content:"+";
+  content:"⌄";
+  background: #9CCE53;
 }
 .property, .gene{
-  color: #8699B1;
   list-style-type: none;
   margin:0;
   padding:0;
-  background: #2D3039;
+  background: #E9EAEA;
   margin:5px;
   position: relative;
 }
+.property{
+  padding-top:40px;
+  padding-bottom:5px;
+}
 .property li, .gene li{
-  width:auto;
+  width:calc(100% - 38px);
+  margin: 5px 5px 0;
   padding:10px;
   text-align: center;
-  border-left:4px solid #DDD;
+  border-left:8px solid #DDD;
+  cursor:pointer;
+  background-color: #FFF;
+}
+.gene li{
+  margin:0;
+}
+.gene{
+  outline:1px dashed #BDBDBD;
+  margin:7px;
 }
 .property.closed{
   overflow:hidden;
-  height:40px;
+  height:0px;
+  color:#888;
+  padding-bottom:0;
 }
 .gene{
-  height:200px;
+  height:40px;
+}
+.gene li{
+  width:20%;
+  padding:0px;
+  border:0;
+  height:100%;
+  overflow:hidden;
+  cursor:pointer;
+  float: left;
+  text-indent: -9999px;
 }
