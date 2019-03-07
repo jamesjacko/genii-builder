@@ -4,10 +4,10 @@ import Gene from './gene.js'
 class GeneBuilder extends Component{
 
   state = {
-    genes: []
+    genes: [{}]
   }
 
-  componentDidMount(){
+  componentWillMount(){
     let lsGenes = window.localStorage.getItem("genes");
     if(lsGenes){
       this.setState({
@@ -44,7 +44,6 @@ class GeneBuilder extends Component{
   }
 
   renderGenes(){
-    console.log(this.state);
     return(
       this.state.genes.map((el, i) => (
           <div key={ "gene"+i } data-index={ i } onDrop={ (e) => this.onDrop(e) } onDragOver={ (e) => this.onDragOver(e) }>
@@ -67,6 +66,7 @@ class GeneBuilder extends Component{
     return(
       <div className="panel left geneBuilder">
         <h2 onClick={ (e) => this.addGene(e) }>Genes</h2>
+        <p>These are the genes for each visualisation type that you have created. Once a gene is complete you can drag it across to the rendering canvas and you visualisation will be shown. You can change properties of genes and re-render them as you see fit, simply drag them across again to see the new vis.</p>
         { this.renderGenes() }
       </div>
     );

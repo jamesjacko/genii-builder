@@ -32,7 +32,9 @@ class Renderer extends Component{
           item[Object.keys(item)[i]] = Gene[Object.keys(item)[i]][Object.values(item)[i]];
         }
         return(
-          <MURV config={ Config } gene={ new Gene(item) } key={ "vis" + index } />
+          <div className="vis" key={ "vis" + index }>
+            <MURV config={ Config } gene={ new Gene(item) } />
+          </div>
         )
       });
     } else {
@@ -46,6 +48,7 @@ class Renderer extends Component{
         onDragOver={ (e) => this.onDragOver(e) }
         onDrop={ (e) => this.onDrop(e) }>
         <h2>Rendered Visualisations</h2>
+        <p>Select which visualisations you like and which you don't, when you select you will be asked to briefly describe your reasoning behind your decision. Feel free to create as many or few visualisations as you like.</p>
         { this.renderMurvs() }
       </div>
     );

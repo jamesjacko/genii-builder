@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 import { Gene as MurvGene } from 'murv-component';
 
 class Gene extends Component{
-  constructor(props){
-    super(props);
-    console.log(props);
-  }
 
-  componentDidMount(){
-    this.renderGene();
-  }
 
   openGene(event){
     event.preventDefault();
