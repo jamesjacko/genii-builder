@@ -17,11 +17,6 @@ class Gene extends Component{
     t.classList.toggle("open");
   }
 
-  shouldComponentUpdate(newProps){
-    this.props = newProps;
-    return true;
-  }
-
   renderGene(){
     return Object.keys(this.props).map((item, i) => {
       return(
