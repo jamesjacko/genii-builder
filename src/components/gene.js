@@ -19,7 +19,8 @@ class Gene extends Component{
 
   openGene(event){
     event.preventDefault();
-    event.target.classList.toggle("open");
+    let t = (event.target.localName === "li")? event.target.parentElement : event.target;
+    t.classList.toggle("open");
   }
 
   renderGene(){
@@ -46,10 +47,14 @@ class Gene extends Component{
 
   onDrop(event){
     event.persist();
-    let data = JSON.parse(event.dataTransfer.getData('id'));
-    this.setState({
-        [data.prop]: data.item
-    });
+    if(event.dataTransfer.getData('id')){
+      if(JSON.parse(event.dataTransfer.getData('id')).mode === 1){
+        let data = JSON.parse(event.dataTransfer.getData('id'));
+        this.setState({
+            [data.prop]: data.item
+        });
+      }
+    }
   }
 
   onDragOver(event){

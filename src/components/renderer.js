@@ -12,11 +12,12 @@ class Renderer extends Component{
   }
 
   onDrop(event){
-    event.persist();
-    let data = JSON.parse(event.dataTransfer.getData('gene'));
-    this.setState({
-        genes: this.state.genes.concat(data)
-    });
+    if(event.dataTransfer.getData('gene')){
+      let data = JSON.parse(event.dataTransfer.getData('gene'));
+      this.setState({
+          genes: this.state.genes.concat(data)
+      });
+    }
   }
 
   onDragOver(event){

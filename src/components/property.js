@@ -22,7 +22,7 @@ class Property extends Component{
         key={ this.props.value + i }
         style={ { borderLeftColor: colors[i] } }
         draggable
-        onDragStart={ (e) => this.onDragStart(e, {prop: this.props.value, value: i, item: item }) }
+        onDragStart={ (e) => this.onDragStart(e, {prop: this.props.value, value: i, item: item, mode: 1 }) }
         >
           { item.toLowerCase() }
         </li>
