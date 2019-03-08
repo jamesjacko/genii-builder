@@ -27,7 +27,7 @@ h1{
   width:calc(20% - 10px);
 }
 .left.main{
-  width: calc(60% - 28px);
+  width: calc(60% - 18px);
 }
 h2{
   margin:0;
@@ -38,8 +38,13 @@ h2{
   padding:0 10px;
   position: relative;
 }
+h2 span{
+  padding-left:10px;
+  border-left: 1px solid #CCC;
+  margin-left: 10px;
+}
 .property:before{
-  width:100%;
+  width:90%;
   line-height: 40px;
   content:attr(data-name);
   padding:0 0 0 20px;
@@ -48,23 +53,34 @@ h2{
   left:0;
   top:0;
 }
-.property:after, .geneBuilder h2:after{
-  content:"-";
-  display: block;
+
+.prop{
+  position: relative;
+}
+.prop svg{
+  color: #4CAF50;
   position: absolute;
-  top:12px;
+  top:0px;
   right:10px;
-  width:20px;
-  height:20px;
-  line-height: 18px;
-  font-size: 20px;
-  padding:0;
-  margin: 0;
-  background: #CE5B53;
-  border-radius: 10px;
-  text-align: center;
-  color: #000;
-  cursor: pointer;
+  z-index: 2;
+  cursor:pointer;
+  height: calc(1em + 24px);
+  line-height: calc(1em + 24px);
+}
+.prop.closed .fa-chevron-circle-up{
+  display: none;
+}
+
+.prop .fa-chevron-circle-up{
+  display: block;
+  color: #F44336;
+}
+
+.prop .fa-chevron-circle-down{
+  display: none;
+}
+.prop.closed .fa-chevron-circle-down{
+  display: block;
 }
 
 .vis{
@@ -82,32 +98,53 @@ h2{
   height: 100%;
   line-height: 200px;
   text-align: center;
-  background: #00000099;
+  background: #00000000;
   font-size: 3em;
   color: #FFF;
-  opacity: 0;
-  transition: opacity 200ms;
+  transition: background 200ms;
 }
 .overlay svg{
   margin:0 10px;
   cursor: pointer;
-  transition: color 200ms;
+  transition: all 200ms;
+  opacity: 0;
+}
+svg *{
+  pointer-events: none;
 }
 .overlay svg:hover{
   color:#FFB604;
 }
+.overlay svg.selected{
+  position: absolute;
+  bottom:25px;
+  right: 0px;
+  opacity: 1;
+  color:#3F51B5;
+  font-size: 0.5em;
+}
+.overlay:hover svg.selected{
+  position: static;
+  bottom: auto;
+  right: auto;
+  font-size: 1em;
+  color:#FFB604;
+}
 .vis:hover .overlay{
+  background:#00000055;
+}
+.vis:hover .overlay svg{
   opacity: 1;
 }
-.geneBuilder h2:after{
-  content:"+";
-  background: #FFC107;
-  font-family: "pt-sans-narrow", sans-serif;
+.geneBuilder svg{
+  font-size: 1.5em;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  color: #FF9800
 }
-.property.closed:after{
-  content:"⌄";
-  background: #9CCE53;
-}
+
+
 .property, .gene{
   list-style-type: none;
   margin:0;
@@ -119,12 +156,14 @@ h2{
 .property{
   padding-top:40px;
   padding-bottom:5px;
+  font-size: 0.9em;
+  text-transform: capitalize;
 }
 .property li, .gene li{
   width:calc(100% - 38px);
   margin: 5px 5px 0;
   padding:10px;
-  text-align: center;
+  text-align: left;
   border-left:8px solid #DDD;
   cursor:pointer;
   background-color: #FFF;
@@ -132,10 +171,7 @@ h2{
 .gene li{
   margin:0;
 }
-.gene{
-  margin:7px;
-}
-.property.closed{
+.closed .property{
   overflow:hidden;
   height:0px;
   color:#888;
@@ -143,6 +179,10 @@ h2{
 }
 .gene{
   height:40px;
+  margin:7px;
+}
+.vis .gene{
+  height: 10px;
 }
 .gene.open{
   height:calc(calc(1em + 23px) * 5);
@@ -168,4 +208,17 @@ h2{
   float: none;
   text-indent: 0;
   height:auto;
+}
+#debug{
+  display: none;
+}
+.showPath #debug{
+  display: block;
+}
+#debug circle{
+  fill:#FF000055;
+
+}
+#debug line{
+  stroke:#FF000055;
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Gene from './gene.js'
+import Gene from './gene.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 class GeneBuilder extends Component{
 
@@ -66,9 +68,10 @@ class GeneBuilder extends Component{
     window.localStorage.setItem("genes", JSON.stringify(this.state.genes));
     return(
       <div className="panel left geneBuilder">
-        <h2 onClick={ (e) => this.addGene(e) }>Genes</h2>
+        <h2>Genes</h2>
         <p>These are the genes for each visualisation type that you have created. Once a gene is complete you can drag it across to the rendering canvas and you visualisation will be shown. You can change properties of genes and re-render them as you see fit, simply drag them across again to see the new vis.</p>
         { this.renderGenes() }
+        <FontAwesomeIcon icon={faPlusCircle} onClick={ (e) => this.addGene(e) } />
       </div>
     );
   }
