@@ -31,7 +31,7 @@ class Property extends Component{
           </li>
         )
       } else {
-        return;
+        return "";
       }
     });
     return values;
@@ -39,7 +39,6 @@ class Property extends Component{
 
   toggle(event){
     event.persist();
-    console.log(event);
     for (var i = 0; i < document.querySelectorAll('.prop').length; i++) {
       if(document.querySelectorAll('.prop')[i] !== event.target.parentElement)
         document.querySelectorAll('.prop')[i].classList.add('closed');

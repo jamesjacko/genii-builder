@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import MURV, { Gene } from 'murv-component';
+import MURV, { Gene as MurvGene } from 'murv-component';
 import Config from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
-import _Gene from './gene.js'
+import Gene from './gene.js'
 
 class Renderer extends Component{
 
@@ -50,17 +50,17 @@ class Renderer extends Component{
         let preservedItem = { ...item };
         let newItem = { ...item };
         for (var i = 0; i < Object.values(item).length; i++) {
-          newItem[Object.keys(newItem)[i]] = Gene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
+          newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
         newItem.debugging = 2;
         return(
           <div className="vis" key={ "vis" + index }>
-            <MURV config={ Config } gene={ new Gene(newItem) } />
+            <MURV config={ Config } gene={ new MurvGene(newItem) } />
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} />
               <FontAwesomeIcon icon={faThumbsDown} />
             </div>
-            <_Gene { ...preservedItem } />
+            <Gene { ...preservedItem } />
           </div>
         )
       });
