@@ -178,8 +178,27 @@ svg *{
   padding-bottom:0;
 }
 .gene{
-  height:40px;
+  height:20px;
   margin:7px;
+  position: relative;
+  padding:40px 10px 10px;
+}
+.gene li{
+  position: absolute;
+}
+
+.gene li.path_mode:before{
+  content:attr(data-prop);
+  color:#FFF;
+  position: absolute;
+  top:5px;
+  left:5px;
+  text-indent: 0;
+  font-size: 0.8em;
+  font-weight: bold;
+  background: #404040;
+  padding: 5px;
+  border-radius: 5px;
 }
 .vis .gene{
   height: 4px;
@@ -188,14 +207,26 @@ svg *{
   height:calc(calc(1em + 23px) * 5);
 }
 .gene li{
-  width:20%;
+  width:calc(18% - 2px);
   padding:0px;
   border:0;
-  height:100%;
+  height:18px;
   overflow:hidden;
   cursor:pointer;
   float: left;
   text-indent: -9999px;
+  margin-right:2%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px #000;
+}
+.gene li.path_mode{
+  left:0px !important;
+  top:0px;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  margin:0;
+  box-shadow:0;
 }
 .gene.open li{
   width:calc(100% - 38px);
@@ -221,4 +252,7 @@ svg *{
 }
 #debug line{
   stroke:#FF000055;
+}
+.step{
+  font-weight: bold;
 }
