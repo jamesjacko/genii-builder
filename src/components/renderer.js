@@ -4,23 +4,26 @@ import Config from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 import Gene from './gene.js';
-import { sendData } from '../utils/firebase.js';
+import { sendData, getGeneKey, setGeneResponse } from '../utils/firebase.js';
 
 class Renderer extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-      genes: []
+      genes: [],
+      key: window.localStorage.getItem('firebase_key')
     }
   }
 
   onDrop(event){
     if(event.dataTransfer.getData('gene')){
       let data = JSON.parse(event.dataTransfer.getData('gene'));
+      data = { gene: { ...data }, key: getGeneKey(this.state.key)}
       this.setState({
           genes: this.state.genes.concat(data)
       });
+      console.log(data);
     }
   }
 
@@ -37,6 +40,9 @@ class Renderer extends Component{
         event.target.parentElement.children[i].classList.remove('selected');
       }
       event.target.classList.add('selected');
+      console.log(event.target.getAttribute('data-index'))
+      let gene = this.state.genes[event.target.getAttribute('data-index')];
+      setGeneResponse(this.state.key, gene.key, gene.gene, event.target.classList.contains('fa-thumbs-up'));
     }
   }
 
@@ -48,9 +54,9 @@ class Renderer extends Component{
   renderMurvs(){
     if(this.state.genes.length > 0){
       return this.state.genes.map((item, index) => {
-        let preservedItem = { ...item };
-        let newItem = { ...item };
-        for (var i = 0; i < Object.values(item).length; i++) {
+        let preservedItem = { ...item.gene };
+        let newItem = { ...item.gene };
+        for (var i = 0; i < Object.values(newItem).length; i++) {
           newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
         newItem.debugging = 2;
@@ -58,8 +64,8 @@ class Renderer extends Component{
           <div className="vis" key={ "vis" + index }>
             <MURV config={ Config } gene={ new MurvGene(newItem) } />
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
-              <FontAwesomeIcon icon={faThumbsUp} />
-              <FontAwesomeIcon icon={faThumbsDown} />
+              <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
+              <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
             </div>
             <Gene { ...preservedItem } />
           </div>

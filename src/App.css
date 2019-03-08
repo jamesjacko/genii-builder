@@ -182,7 +182,7 @@ svg *{
   margin:7px;
 }
 .vis .gene{
-  height: 10px;
+  height: 4px;
 }
 .gene.open{
   height:calc(calc(1em + 23px) * 5);
