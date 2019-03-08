@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MURV, { Gene as MurvGene } from 'murv-component';
 import Config from '../config.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
-import Gene from './gene.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import Gene from './gene.js';
+import { sendData } from '../utils/firebase.js';
 
 class Renderer extends Component{
 
