@@ -13,10 +13,11 @@ class Gene extends Component{
       return(
         <li
           key={ i }
-          data-prop = { Object.values(this.props)[i].toLowerCase() }
+          data-value = { Object.values(this.props)[i].toLowerCase().replace("_", " ") }
+          data-prop = { Object.keys(this.props)[i].toLowerCase() }
           className={ "color" +
             MurvGene[Object.keys(this.props)[i]][Object.values(this.props)[i]] + " " + Object.keys(this.props)[i].toLowerCase() }
-          style={ Object.keys(this.props)[i].toLowerCase() === "path_mode"? {} : { 'left' : "calc(" + ((i - 1) * 20) + "% + 10px)", zIndex : "2" } }
+          style={ Object.keys(this.props)[i].toLowerCase() === "path_mode"? {} : { 'left' : "calc(" + ((i - 1) * 24) + "% + 5px)", zIndex : "2" } }
           >
           { Object.values(this.props)[i].toLowerCase() }
         </li>

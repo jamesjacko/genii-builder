@@ -67,7 +67,6 @@ class Renderer extends Component{
               <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
             </div>
-            <Gene { ...preservedItem } />
           </div>
         )
       });
