@@ -10,6 +10,7 @@
     "firebase": "^5.8.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
     "roboto-fontface": "^0.10.0",
     "typeface-pt-sans-narrow": "^0.0.71"
