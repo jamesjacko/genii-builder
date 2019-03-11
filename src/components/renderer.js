@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MURV, { Gene as MurvGene } from 'murv-component';
-import Config from '../config.js';
+import Config, { Config1, Config2 } from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 import Gene from './gene.js';
@@ -47,8 +47,7 @@ class Renderer extends Component{
   }
 
   togglePath(event){
-    document.querySelector('.main').classList.toggle('showPath', event.target.checked);
-
+    document.querySelector('.main').classList.toggle('showPath', !event.target.checked);
   }
 
   renderMurvs(){
@@ -60,9 +59,27 @@ class Renderer extends Component{
           newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
         newItem.debugging = 2;
+        let newConfig = Config;
+
+        if(newItem.config){
+          switch (newItem.config) {
+            case 1:
+              newConfig = Config;
+              break;
+            case 2:
+              newConfig = Config1;
+              break;
+            case 3:
+              newConfig = Config2;
+              break;
+            default:
+              newConfig = Config
+          }
+        }
+
         return(
           <div className="vis" key={ "vis" + index }>
-            <MURV config={ Config } gene={ new MurvGene(newItem) } />
+            <MURV config={ newConfig } gene={ new MurvGene(newItem) } />
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
@@ -77,10 +94,10 @@ class Renderer extends Component{
 
   render(){
     return(
-      <div className="panel left main"
+      <div className="panel left main showPath"
         onDragOver={ (e) => this.onDragOver(e) }
         onDrop={ (e) => this.onDrop(e) }>
-        <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Show Path</span></h2>
+        <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Hide Path</span></h2>
         <p>Select which visualisations you like and which you don't, when you select you will be asked to briefly describe your reasoning behind your decision. Feel free to create as many or few visualisations as you like.</p>
         { this.renderMurvs() }
       </div>

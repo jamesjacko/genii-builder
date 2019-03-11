@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Property from './property.js';
+import Config from '../config.js';
+import Data from './data.js';
 
 class ParameterSelector extends Component{
   render(){
@@ -15,6 +17,7 @@ class ParameterSelector extends Component{
         <Property value="path_points" />
         <Property value="object_size" />
         <p className="step">3: Add some data</p>
+        <Data />
       </div>
     )
   }

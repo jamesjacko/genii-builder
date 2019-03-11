@@ -190,7 +190,7 @@ svg *{
 
 .gene li:before{
   content:attr(data-value);
-  color:#FFF;
+  color:#333;
   position: absolute;
   top:0px;
   left:0px;
@@ -199,21 +199,24 @@ svg *{
 
   /* background: #404040; */
   padding: 5px;
+  height:15px;
+  overflow: hidden;
 }
 .gene li.path_mode:before{
   content:"path: " attr(data-value);
   top:5px;
   left:5px;
   font-size: 0.8em;
-  background: #404040;
   border-radius: 0px;
   line-height: 15px;
+  height:15px;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .gene li:after{
   content:attr(data-prop);
-  color:#FFF;
+  color:#333;
   position: absolute;
   left:0px;
   top:-2px;
@@ -235,7 +238,7 @@ svg *{
   height:calc(calc(1em + 23px) * 5);
 }
 .gene li{
-  width:calc(23% - 2px);
+  width:calc(23% - 5px);
   padding:5px 0 0;
   border:0;
   height:17px;
@@ -251,11 +254,19 @@ svg *{
   left:0px !important;
   top:0px;
   padding:0;
-  width:100%;
-  height:75%;
+  width:90%;
+  height:100%;
   z-index: 1;
   margin:0;
   box-shadow:none;
+  background: #E9EAEA;
+  border-width: 5px;
+}
+.gene li.config{
+  top:2px;
+  right: 0px;
+  left:auto !important;
+  bottom: auto;
 }
 .gene.open{
   padding: 5px;
