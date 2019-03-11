@@ -31,6 +31,7 @@ class Gene extends Component{
           </li>
         )
       }
+      return "";
     })
   }
 

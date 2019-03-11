@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Gene } from 'murv-component';
-import { colors } from '../utils/colors.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 

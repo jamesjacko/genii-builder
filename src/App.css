@@ -353,3 +353,42 @@ svg *{
 .step{
   font-weight: bold;
 }
+.sus{
+  text-align: center;
+}
+.sus > div{
+  text-align: center;
+  width: 700px;
+  margin: 0 auto 20px;
+  border-bottom: 1px dotted #CCC;
+  padding-bottom: 20px;
+}
+.sus-question{
+  width:200px;
+  margin:0 auto;
+  position: relative;
+  height: 30px;
+}
+.sus-question:before, .sus-question:after{
+  content: "Strongly Disagree";
+  display: block;
+  position: absolute;
+  left: -100px;
+  top:0px;
+  width: 100px;
+  text-align: center;
+  font-size:0.7em;
+  line-height: 24px;
+}
+.sus-question:after{
+  content:"Strongly Agree";
+  left:auto;
+  right:-100px;
+}
+.sus-question input{
+  margin: 0 10px;
+  width:20px;
+}
+.bold{
+  font-weight: bold;
+}

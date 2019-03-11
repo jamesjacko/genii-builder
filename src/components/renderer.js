@@ -3,8 +3,7 @@ import MURV, { Gene as MurvGene } from 'murv-component';
 import Config, { Config1, Config2 } from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
-import Gene from './gene.js';
-import { sendData, getGeneKey, setGeneResponse } from '../utils/firebase.js';
+import { getGeneKey, setGeneResponse } from '../utils/firebase.js';
 
 class Renderer extends Component{
 
@@ -33,13 +32,11 @@ class Renderer extends Component{
 
   voteSelected(event){
     event.persist();
-    console.log(event);
     if(event.target.localName === "svg"){
       for (var i = 0; i < event.target.parentElement.children.length; i++) {
         event.target.parentElement.children[i].classList.remove('selected');
       }
       event.target.classList.add('selected');
-      console.log(event.target.getAttribute('data-index'))
       let gene = this.state.genes[event.target.getAttribute('data-index')];
       setGeneResponse(this.state.key, gene.key, gene.gene, event.target.classList.contains('fa-thumbs-up'));
     }
@@ -54,23 +51,21 @@ class Renderer extends Component{
 
       return this.state.genes.map((item, index) => {
 
-        let preservedItem = { ...item.gene };
+
         let newItem = { ...item.gene };
 
         for (var i = 0; i < Object.values(newItem).length; i++) {
           if(Object.keys(newItem)[i].toLowerCase() !== "config" && Object.keys(newItem)[i] !== "actions")
             newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
-        console.log("here");
         newItem.debugging = 2;
         let newConfig = Config;
-
         if(newItem.config){
           switch (newItem.config) {
-            case 2:
+            case "Dataset_2":
               newConfig = Config1;
               break;
-            case 3:
+            case "Dataset_3":
               newConfig = Config2;
               break;
             default:

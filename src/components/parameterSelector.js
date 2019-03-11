@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Property from './property.js';
-import Config from '../config.js';
 import Data from './data.js';
 
 class ParameterSelector extends Component{

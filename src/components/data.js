@@ -36,7 +36,6 @@ class Data extends Component{
       "value": id,
       "mode": 1
     }
-    console.log(toSend);
     event.dataTransfer.setData('id', JSON.stringify(toSend));
   }
 
