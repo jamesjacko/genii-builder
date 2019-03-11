@@ -296,6 +296,23 @@ svg *{
 .gene.open li:before, .gene.open li:after, .vis .gene li:before, .vis .gene li:after{
   display: none;
 }
+.gene svg{
+  position: absolute;
+  z-index: 4;
+  color: #000;
+  right: 0;
+  top: 5px;
+  right: 10px;
+  width: 13px !important;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.gene svg.fa-copy{
+  right:28px;
+}
+.gene:hover svg{
+  opacity: 1;
+}
 .vis .gene{
   padding:10px;
 }

@@ -17,7 +17,6 @@ class Data extends Component{
 
   renderValues(){
     return this.state.data.map((item, i) => {
-      console.log(i);
       return(
         <li
           key={ "config" + i }

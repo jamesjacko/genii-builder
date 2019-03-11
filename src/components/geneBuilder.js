@@ -40,6 +40,25 @@ class GeneBuilder extends Component{
     }
   }
 
+  removeGene(index){
+    var arr = [...this.state.genes];
+    arr.splice(index, 1);
+    this.setState(prevState => ({
+      genes: arr
+    }));
+  }
+  copyGene(index){
+    let arr = [];
+    for (var i = 0; i < this.state.genes.length; i++) {
+      if(i === index)
+        arr.push(this.state.genes[i]);
+      arr.push(this.state.genes[i])
+    }
+    this.setState(prevState => ({
+      genes: arr
+    }));
+  }
+
   onDragOver(event){
     event.stopPropagation();
     event.preventDefault();
@@ -49,7 +68,11 @@ class GeneBuilder extends Component{
     return(
       this.state.genes.map((el, i) => (
           <div key={ "gene"+i } data-index={ i } onDrop={ (e) => this.onDrop(e) } onDragOver={ (e) => this.onDragOver(e) }>
-            <Gene { ...el }/>
+            <Gene { ...{
+                ...el, actions:
+                { remove: this.removeGene.bind(this), copy: this.copyGene.bind(this), index: i }
+              }
+            }/>
           </div>
         )
       )
@@ -70,7 +93,7 @@ class GeneBuilder extends Component{
         <h2>Genes</h2>
         <p>These are the genes for each visualisation type that you have created. Once a gene is complete you can drag it across to the rendering canvas and you visualisation will be shown. You can change properties of genes and re-render them as you see fit, simply drag them across again to see the new vis.</p>
         { this.renderGenes() }
-        <FontAwesomeIcon icon={faPlusCircle} onClick={ (e) => this.addGene(e) } />
+        <FontAwesomeIcon icon={faPlusCircle} onClick={ (e) => this.addGene(e) } title="Add Gene" />
       </div>
     );
   }

@@ -23,7 +23,6 @@ class Renderer extends Component{
       this.setState({
           genes: this.state.genes.concat(data)
       });
-      console.log(data);
     }
   }
 
@@ -52,20 +51,22 @@ class Renderer extends Component{
 
   renderMurvs(){
     if(this.state.genes.length > 0){
+
       return this.state.genes.map((item, index) => {
+
         let preservedItem = { ...item.gene };
         let newItem = { ...item.gene };
+
         for (var i = 0; i < Object.values(newItem).length; i++) {
-          newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
+          if(Object.keys(newItem)[i].toLowerCase() !== "config" && Object.keys(newItem)[i] !== "actions")
+            newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
+        console.log("here");
         newItem.debugging = 2;
         let newConfig = Config;
 
         if(newItem.config){
           switch (newItem.config) {
-            case 1:
-              newConfig = Config;
-              break;
             case 2:
               newConfig = Config1;
               break;
