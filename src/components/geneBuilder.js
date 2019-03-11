@@ -51,7 +51,7 @@ class GeneBuilder extends Component{
     let arr = [];
     for (var i = 0; i < this.state.genes.length; i++) {
       if(i === index)
-        arr.push(this.state.genes[i]);
+        arr.push({...this.state.genes[i]});
       arr.push(this.state.genes[i])
     }
     this.setState(prevState => ({
