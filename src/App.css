@@ -12,6 +12,27 @@ h1{
   font-size: 1.2em;
   border-bottom: 1px solid #CCC;
 }
+h1 .timedButton{
+  float: right;
+}
+h1 .timedButton button{
+  height:40px;
+  margin:10px 0 0 10px;
+  width:100px;
+  border-radius: 3px;
+  background: #FFF;
+  background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+  border:1px solid #CCC;
+  cursor: pointer;
+}
+h1 .timedButton button:disabled{
+  background: linear-gradient(to bottom, #e5e5e5 0%,#FFF 100%);
+  color:#CCC;
+  cursor: not-allowed;
+}
+h1 .timedButton span{
+  font-size: 0.7em;
+}
 .panel{
   margin:10px 0 10px 10px;
   background: #FFF;
