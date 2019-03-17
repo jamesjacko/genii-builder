@@ -13,14 +13,20 @@ firebase.initializeApp(config);
 window.localStorage.setItem("firebase_key", firebase.database().ref().push().getKey());
 
 export function getGeneKey(key){
-  return firebase.database().ref().child(key).push().getKey();
+  return window.localStorage.getItem('firebase_key') || firebase.database().ref().child(key).push().getKey();
 }
 
 export function setGeneResponse(key, geneKey, gene, response){
-  firebase.database().ref(key + "/" +geneKey).set({
+  firebase.database().ref(key + "/" + geneKey + "/genes").set({
     gene: gene,
     response: response
   });
+}
+
+export function setSUSResponse(key, response, callback){
+  firebase.database().ref(key + "/sus").set({
+    response: response
+  }, callback())
 }
 
 export function sendData(obj, callback){

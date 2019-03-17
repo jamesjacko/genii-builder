@@ -3,24 +3,52 @@ import React, {
 } from "react";
 import PropTypes from 'prop-types';
 import SUSQuestion from './susQuestion';
+import { setSUSResponse } from '../utils/firebase.js';
 
 class SurveySUS extends Component {
   constructor(props){
     super(props);
     this.state = {
-      questions: []
+      questions: {},
+      key: window.localStorage.getItem('firebase_key')
     }
     this.setQuestion = this.setQuestion.bind(this);
   }
 
-  setQuestion(index){
+  setQuestion(index, value){
+    let obj = {...this.state.questions};
+    obj[index] = value;
     this.setState({
-      questions: this.state.questions.concat(index)
-    })
+      questions: {...obj}
+    });
   }
 
   static propTypes = {
     title: PropTypes.string.isRequired
+  }
+
+  clickHandler(event){
+    event.preventDefault();
+    let total = 0;
+    for (var i = 0; i < Object.keys(this.state.questions).length; i++) {
+      if(i % 2 === 1){
+        total += 5 - (parseInt(this.state.questions[i]) + 1);
+      } else {
+        total += parseInt(this.state.questions[i]);
+      }
+      console.log(typeof this.state.questions[i]);
+    }
+    let response = { ...this.state.questions }
+    response.value = total * 2.5;
+    setSUSResponse(this.state.key, response, this.susCallBack.bind(this));
+  }
+
+  susCallBack(error){
+    if(error){
+
+    } else {
+      alert("done")
+    }
   }
 
   questions = [
@@ -44,9 +72,10 @@ class SurveySUS extends Component {
 
   render() {
     console.log(this.state);
-    return ( <div className="sus">
-      <p>Please fill out the following survey. This is in regards to the system you have used to design the visualisations. A survey about the visualisations will follow this.</p>
+    return ( <div className="survey">
+      <h2>Please fill out the following survey. This is in regards to the system you have used to design the visualisations. A survey about the visualisations will follow this.</h2>
       { this.renderQuestions() }
+      <button disabled={Object.keys(this.state.questions).length !== this.questions.length} onClick={ (e) => this.clickHandler(e) }>Continue</button>
       </div>
     )
   }

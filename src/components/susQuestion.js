@@ -10,12 +10,7 @@ import React, { Component } from "react";
    }
 
    clickHandler(event){
-     if(!this.state.interacted){
-       this.setState({
-         interacted: true
-       });
-       this.props.actions.setQuestion(this.props.index);
-     }
+     this.props.actions.setQuestion(this.props.index, event.target.value);
    }
 
    renderCheckboxes(){

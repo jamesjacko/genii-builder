@@ -3,6 +3,7 @@ import './App.css';
 import SurveyWelcome from './components/surveyWelcome';
 import SurveyDesign from './components/surveyDesign';
 import SurveySUS from './components/surveySUS';
+import SurveyQuestions from './components/surveyQuestions';
 import TimedButton from './utils/timedButton';
 import {
   BrowserRouter,
@@ -20,7 +21,7 @@ class App extends Component {
           <h1>Micro-Visualisation Designer
             <Route exact path="/design" render={ (props) => <TimedButton { ...{
                 text: "Next",
-                duration: "2000",
+                duration: "3000",
                 actions:{
                   click: () => this.buttonClick(props)
                 }
@@ -29,6 +30,7 @@ class App extends Component {
           <Route exact path="/" render={(props) => <SurveyWelcome { ...props } />} />
           <Route exact path="/design" render={(props) => <SurveyDesign { ...props } />} />
           <Route exact path="/sus" render={(props) => <SurveySUS { ...props } title="System Usability Scale" />} />
+          <Route exact path="/survey" render={(props) => <SurveyQuestions { ...props } />} />
         </div>
       </BrowserRouter>
     );
