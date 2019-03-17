@@ -367,6 +367,13 @@ svg *{
 }
 .sus{
   text-align: center;
+  width:800px;
+  margin:0 auto;
+  background: #FFF;
+  margin-top:-16px;
+}
+.sus > p:first-child{
+  padding:40px;
 }
 .sus > div{
   text-align: center;

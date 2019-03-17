@@ -5,6 +5,20 @@ import PropTypes from 'prop-types';
 import SUSQuestion from './susQuestion';
 
 class SurveySUS extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      questions: []
+    }
+    this.setQuestion = this.setQuestion.bind(this);
+  }
+
+  setQuestion(index){
+    this.setState({
+      questions: this.state.questions.concat(index)
+    })
+  }
+
   static propTypes = {
     title: PropTypes.string.isRequired
   }
@@ -24,13 +38,14 @@ class SurveySUS extends Component {
 
   renderQuestions(){
     return this.questions.map((item, index) => (
-      <SUSQuestion text={ item } index={ index } key={ "question_" + index } />
+      <SUSQuestion text={ item } index={ index } actions={ {setQuestion: this.setQuestion } } key={ "question_" + index } />
     ));
   }
 
   render() {
+    console.log(this.state);
     return ( <div className="sus">
-      <p>Please fill out the following survey. This is in regards to the system you have used to design the visualisarions. <br /> A survey about the visualisations will follow this.</p>
+      <p>Please fill out the following survey. This is in regards to the system you have used to design the visualisations. A survey about the visualisations will follow this.</p>
       { this.renderQuestions() }
       </div>
     )

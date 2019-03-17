@@ -9,15 +9,22 @@ import {
   Route} from 'react-router-dom';
 
 class App extends Component {
-  buttonClick(){
-    alert("Hello");
+  buttonClick(props){
+    props.history.push("/sus");
   }
   render() {
+
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div className="App">
           <h1>Micro-Visualisation Designer
-            <TimedButton text="Next" duration="300000" actions={ { click: this.buttonClick.bind(this) } } />
+            <Route exact path="/design" render={ (props) => <TimedButton { ...{
+                text: "Next",
+                duration: "2000",
+                actions:{
+                  click: () => this.buttonClick(props)
+                }
+            } } /> } />
           </h1>
           <Route exact path="/" render={(props) => <SurveyWelcome { ...props } />} />
           <Route exact path="/design" render={(props) => <SurveyDesign { ...props } />} />
