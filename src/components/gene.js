@@ -24,8 +24,9 @@ class Gene extends Component{
             data-value = { Object.values(this.props)[i].toLowerCase().replace("_", " ") }
             data-prop = { Object.keys(this.props)[i].toLowerCase() === "config"? "data" : Object.keys(this.props)[i].toLowerCase()}
             className={ "color" +
-              MurvGene[Object.keys(this.props)[i]][Object.values(this.props)[i]] + " " + Object.keys(this.props)[i].toLowerCase() }
-            style={ Object.keys(this.props)[i].toLowerCase() === "path_mode"? {} : { 'left' : "calc(" + ((i - 1) * 22) + "% + 27px)", zIndex : "2" } }
+              MurvGene[Object.keys(this.props)[i]][Object.values(this.props)[i]] + " " + Object.keys(this.props)[i].toLowerCase() +
+              (Object.keys(this.props)[i].toLowerCase() === "path_mode"? "" : " stylabale") }
+            // style={ Object.keys(this.props)[i].toLowerCase() === "path_mode"? {} : { 'left' : "calc(" + ((i - 1) * 22) + "% + 27px)", zIndex : "2" } }
             >
             { Object.values(this.props)[i].toLowerCase() }
           </li>

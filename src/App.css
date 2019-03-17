@@ -202,7 +202,10 @@ svg *{
   height:30px;
   margin:7px;
   position: relative;
-  padding:40px 10px 0px;
+  padding:40px 0px 0px;
+  overflow: hidden;
+  border: 1px solid #FFF;
+  box-shadow: 0 0 2px #000000CC;
 }
 .gene li{
   position: absolute;
@@ -211,7 +214,7 @@ svg *{
 
 .gene li:before{
   content:attr(data-value);
-  color:#333;
+  color:#FFF;
   position: absolute;
   top:0px;
   left:0px;
@@ -225,8 +228,8 @@ svg *{
 }
 .gene li.path_mode:before{
   content:"path: " attr(data-value);
-  top:5px;
-  left:5px;
+  top:0px;
+  left:1px;
   font-size: 0.8em;
   border-radius: 0px;
   line-height: 15px;
@@ -237,7 +240,7 @@ svg *{
 
 .gene li:after{
   content:attr(data-prop);
-  color:#333;
+  color:#FFF;
   position: absolute;
   left:0px;
   top:-2px;
@@ -259,7 +262,7 @@ svg *{
   height:calc(calc(1em + 23px) * 5);
 }
 .gene li{
-  width:calc(23% - 5px);
+  width:calc(25% - 6px);
   padding:5px 0 0;
   border:0;
   height:17px;
@@ -267,24 +270,30 @@ svg *{
   cursor:pointer;
   float: left;
   text-indent: -9999px;
-  margin-right:2%;
+  margin-right:0;
   border-radius: 0px;
-  /* box-shadow: 0px 0px 2px #000; */
+  box-shadow: 0px 0px 2px #000;
+}
+.gene li:nth-child(3){
+  margin:0 4px 0 8px;
+}
+.gene li:nth-child(4){
+  margin:0 8px 0 4px;
 }
 .gene li.path_mode{
   left:0px !important;
   top:0px;
   padding:0;
-  width:90%;
+  width:100%;
   height:100%;
   z-index: 1;
   margin:0;
   box-shadow:none;
-  background: #E9EAEA;
   border-width: 5px;
+  /* background: #344C6D; */
 }
 .gene li.config{
-  top:2px;
+  top:7px;
   right: 0px;
   left:auto !important;
   bottom: auto;
@@ -319,17 +328,20 @@ svg *{
 }
 .gene svg{
   position: absolute;
-  z-index: 4;
-  color: #000;
+  z-index: 101;
+  color: #FFF;
   right: 0;
   top: 5px;
   right: 10px;
-  width: 13px !important;
+  width: 30px !important;
   opacity: 0;
   transition: opacity 200ms;
 }
+.gene svg{
+  filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .7));
+}
 .gene svg.fa-copy{
-  right:28px;
+  right:40px;
 }
 .gene:hover svg{
   opacity: 1;
@@ -391,4 +403,13 @@ svg *{
 }
 .bold{
   font-weight: bold;
+}
+.gene li.stylabale:not(.config){
+  z-index:100;
+  position:relative;
+  left:auto;
+  top:auto;
+}
+.gene li.config{
+  z-index: 100;
 }

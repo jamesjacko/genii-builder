@@ -1,47 +1,54 @@
 .gene li.color1{
-  border-left: 3px solid #009688;
+  background: #009688;
 }
 .gene li.color2{
-  border-left: 3px solid #E91E63;
+  background: #E91E63;
 }
 .gene li.color3{
-  border-left: 3px solid #9C27B0;
+  background: #9C27B0;
 }
 .gene li.color4{
-  border-left: 3px solid #FFC107;
+  background: #FFC107;
 }
 .gene li.color5{
-  border-left: 3px solid #3F51B5;
+  background: #3F51B5;
 }
 .gene li.color6{
-  border-left: 3px solid #4CAF50;
+  background: #4CAF50;
 }
 .gene li.color13{
-  border-left: 3px solid #673AB7;
+  background: #673AB7;
 }
 .gene li.color8{
-  border-left: 3px solid #FFEB3B;
+  background: #FFEB3B;
 }
 .gene li.color9{
-  border-left: 3px solid #CDDC39;
+  background: #CDDC39;
 }
 .gene li.color10{
-  border-left: 3px solid #FF5722;
+  background: #FF5722;
 }
 .gene li.color11{
-  border-left: 3px solid #00BCD4;
+  background: #00BCD4;
 }
 .gene li.color12{
-  border-left: 3px solid #f44336;
+  background: #f44336;
 }
 .gene li.color15{
-  border-left: 3px solid #FF9800;
+  background: #FF9800;
 }
 .gene li.color7{
-  border-left: 3px solid #2196F3;
+  background: #2196F3;
 }
 .gene li.color14{
-  border-left: 3px solid #009688;
+  background: #009688;
+}
+
+.gene li.color8:before, .gene li.color8:after,
+.gene li.color4:before, .gene li.color4:after,
+.gene li.color6:before, .gene li.color6:after,
+.gene li.color11:before, .gene li.color11:after{
+  color: #000!important;
 }
 
 .gene.open li.color1{
