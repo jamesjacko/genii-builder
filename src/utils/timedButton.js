@@ -46,7 +46,6 @@ class TimedButton extends Component{
   }
 
   render(){
-    console.log(this.props)
     return(
       <div className="timedButton">
         <span>{ this.state.timeLeft }</span><button disabled={this.state.disabled} id="timedButton" onClick={ (e) => this.clickHandler(e) }>{ this.props.text }</button>

@@ -49,7 +49,7 @@ class Renderer extends Component{
   renderMurvs(){
     if(this.state.genes.length > 0){
 
-      return this.state.genes.map((item, index) => {
+      const murvs = this.state.genes.map((item, index) => {
 
 
         let newItem = { ...item.gene };
@@ -72,10 +72,9 @@ class Renderer extends Component{
               newConfig = Config
           }
         }
-
         return(
           <div className="vis" key={ "vis" + index }>
-            <MURV config={ newConfig } gene={ new MurvGene(newItem) } />
+            <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } />
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
@@ -83,17 +82,18 @@ class Renderer extends Component{
           </div>
         )
       });
+      return murvs;
     } else {
       return;
     }
   }
 
   render(){
-    console.clear();
     return(
       <div className="panel left main showPath"
         onDragOver={ (e) => this.onDragOver(e) }
-        onDrop={ (e) => this.onDrop(e) }>
+        onDrop={ (e) => this.onDrop(e) }
+        key={ "renderer" +this.state.genes.length }>
         <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Hide Path</span></h2>
         <p>Select which visualisations you like and which you don't, when you select you will be asked to briefly describe your reasoning behind your decision. Feel free to create as many or few visualisations as you like.</p>
         { this.renderMurvs() }
