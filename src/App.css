@@ -123,6 +123,7 @@ h2 span{
   font-size: 3em;
   color: #FFF;
   transition: background 200ms;
+  border-radius: 6px;
 }
 .overlay svg{
   margin:0 10px;
@@ -365,15 +366,48 @@ svg *{
 .step{
   font-weight: bold;
 }
-.sus{
+.survey{
   text-align: center;
+  width:800px;
+  margin:0 auto;
+  background: #FFF;
+  margin-top:-16px;
+  min-height: calc(100vh - 61px);
 }
-.sus > div{
+.survey > p:first-child{
+  padding:40px;
+}
+.survey > div{
   text-align: center;
   width: 700px;
   margin: 0 auto 20px;
   border-bottom: 1px dotted #CCC;
   padding-bottom: 20px;
+}
+.survey textarea{
+  width:calc(100% - 22px);
+  height:9em;
+  border:1px solid #CCC;
+  font: inherit;
+  color: inherit;
+  font-size: 0.85em;
+  padding: 10px;
+}
+.survey button{
+  height:40px;
+  margin:10px 0 0 10px;
+  width:100px;
+  border-radius: 3px;
+  background: #FFF;
+  background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+  border:1px solid #CCC;
+  cursor: pointer;
+}
+.survey h2{
+  margin: 0;
+  padding:10px 0;
+  font-weight: bold;
+  border: none;
 }
 .sus-question{
   width:200px;

@@ -47,6 +47,7 @@
 .gene li.color8:before, .gene li.color8:after,
 .gene li.color4:before, .gene li.color4:after,
 .gene li.color6:before, .gene li.color6:after,
+.gene li.color9:before, .gene li.color9:after,
 .gene li.color11:before, .gene li.color11:after{
   color: #000!important;
 }
