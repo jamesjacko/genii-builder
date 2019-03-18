@@ -3,7 +3,7 @@ import React, {
 } from "react";
 import PropTypes from 'prop-types';
 import SUSQuestion from './susQuestion';
-import { setSUSResponse } from '../utils/firebase.js';
+import { setSurveyResponse } from '../utils/firebase.js';
 
 class SurveySUS extends Component {
   constructor(props){
@@ -40,14 +40,14 @@ class SurveySUS extends Component {
     }
     let response = { ...this.state.questions }
     response.value = total * 2.5;
-    setSUSResponse(this.state.key, response, this.susCallBack.bind(this));
+    setSurveyResponse(this.state.key, 'sus', response, this.susCallBack.bind(this));
   }
 
   susCallBack(error){
     if(error){
 
     } else {
-      alert("done")
+      this.props.history.push('/survey');
     }
   }
 
@@ -73,7 +73,7 @@ class SurveySUS extends Component {
   render() {
     console.log(this.state);
     return ( <div className="survey">
-      <h2>Please fill out the following survey. This is in regards to the system you have used to design the visualisations. A survey about the visualisations will follow this.</h2>
+      <p>Please fill out the following survey. This is in regards to the system you have used to design the visualisations. A survey about the visualisations will follow this.</p>
       { this.renderQuestions() }
       <button disabled={Object.keys(this.state.questions).length !== this.questions.length} onClick={ (e) => this.clickHandler(e) }>Continue</button>
       </div>

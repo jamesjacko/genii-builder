@@ -14,7 +14,7 @@ class ParameterSelector extends Component{
         <Property value="shape" />
         <Property value="color" />
         <Property value="path_points" />
-        <Property value="object_size" />
+        <Property value="object_rotation" />
         <p className="step">3: Add some data</p>
         <Data />
       </div>

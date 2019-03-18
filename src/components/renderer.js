@@ -89,6 +89,7 @@ class Renderer extends Component{
   }
 
   render(){
+    console.clear();
     return(
       <div className="panel left main showPath"
         onDragOver={ (e) => this.onDragOver(e) }

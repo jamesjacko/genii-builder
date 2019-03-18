@@ -123,6 +123,7 @@ h2 span{
   font-size: 3em;
   color: #FFF;
   transition: background 200ms;
+  border-radius: 6px;
 }
 .overlay svg{
   margin:0 10px;
@@ -370,7 +371,7 @@ svg *{
   width:800px;
   margin:0 auto;
   background: #FFF;
-  margin-top:-10px;
+  margin-top:-16px;
   min-height: calc(100vh - 61px);
 }
 .survey > p:first-child{

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { setSurveyResponse } from '../utils/firebase.js';
 
  class SurveyQuestions extends Component{
 
@@ -6,7 +7,8 @@ import React, { Component } from "react";
      super(props);
      this.state = {
        questions: {},
-       key: window.localStorage.getItem('firebase_key')
+       key: window.localStorage.getItem('firebase_key'),
+       sent: false
      }
    }
 
@@ -26,15 +28,22 @@ import React, { Component } from "react";
      }))
    }
 
+   surveyCallBack(){
+     this.setState({
+       sent:true
+     });
+   }
+
    clickHandler(event){
      event.preventDefault();
+     setSurveyResponse(this.state.key, 'survey', this.state.questions, this.surveyCallBack.bind(this));
    }
 
     renderQuestions(){
       return (this.questions.map((item, index) => {
         return(
           <div key={ "survey_" + index }>
-            <p>{ item }:</p>
+            <p className="bold">{ item }:</p>
             <textarea data-id={ index } value={ this.state.questions[index] } onChange={(e) => this.textChanged(e, index)}/>
           </div>
         )
@@ -43,13 +52,21 @@ import React, { Component } from "react";
 
    render(){
      console.log(this.state);
-     return(
-       <div className="survey">
-         <h2>Please fill out the following survey questions.</h2>
-         { this.renderQuestions() }
-         <button onClick={ (e) => this.clickHandler(e) }>Continue</button>
-        </div>
-     )
+     if(!this.state.sent){
+       return(
+         <div className="survey">
+           <p>Please fill out the following survey questions.</p>
+           { this.renderQuestions() }
+           <button onClick={ (e) => this.clickHandler(e) }>Continue</button>
+          </div>
+       )
+     } else {
+       return(
+         <div className="survey">
+           <p>Thank you for taking the time to take the survey.</p>
+          </div>
+       )
+     }
    }
  }
 
