@@ -11,7 +11,8 @@ class Renderer extends Component{
     super(props);
     this.state = {
       genes: [],
-      key: window.localStorage.getItem('firebase_key')
+      key: window.localStorage.getItem('firebase_key'),
+      count: 0
     }
   }
 
@@ -19,9 +20,10 @@ class Renderer extends Component{
     if(event.dataTransfer.getData('gene')){
       let data = JSON.parse(event.dataTransfer.getData('gene'));
       data = { gene: { ...data }, key: getGeneKey(this.state.key)}
-      this.setState({
-          genes: this.state.genes.concat(data)
-      });
+      this.setState(prevState => ({
+          genes: prevState.genes.concat(data),
+          count: prevState.count + 1
+      }));
     }
   }
 
@@ -93,7 +95,7 @@ class Renderer extends Component{
       <div className="panel left main showPath"
         onDragOver={ (e) => this.onDragOver(e) }
         onDrop={ (e) => this.onDrop(e) }
-        key={ "renderer" +this.state.genes.length }>
+        key={ "renderer" + this.state.count }>
         <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Hide Path</span></h2>
         <p>Select which visualisations you like and which you don't, when you select you will be asked to briefly describe your reasoning behind your decision. Feel free to create as many or few visualisations as you like.</p>
         { this.renderMurvs() }
