@@ -112,6 +112,8 @@ h2 span{
   border-radius: 6px;
   border: 3px solid #FFF;
   overflow: hidden;
+  width:200px;
+  height:200px;
 }
 .overlay{
   position: absolute;
@@ -455,4 +457,8 @@ svg *{
 }
 .gene li.config{
   z-index: 100;
+}
+iframe{
+  box-shadow: 0px 0px 2px #000000;
+  border:2px solid #FFF;
 }

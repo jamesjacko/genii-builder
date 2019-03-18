@@ -50,12 +50,18 @@ class Renderer extends Component{
         event.target.classList.add('selected');
         let gene = this.state.genes[event.target.getAttribute('data-index')];
         setGeneResponse(this.state.key, gene.key, gene.gene, event.target.classList.contains('fa-thumbs-up'));
+        var arr = [...this.state.genes];
+        arr[event.target.getAttribute('data-index')].gene.liked = event.target.classList.contains('fa-thumbs-up');
+        this.setState(prevState => ({
+          genes: arr,
+          count: prevState.count + 1
+        }));
       }
     }
   }
 
   togglePath(event){
-    document.querySelector('.main').classList.toggle('showPath', !event.target.checked);
+    document.querySelector('.main').classList.toggle('showPath', event.target.checked);
   }
 
   renderMurvs(){
@@ -67,7 +73,7 @@ class Renderer extends Component{
         let newItem = { ...item.gene };
 
         for (var i = 0; i < Object.values(newItem).length; i++) {
-          if(Object.keys(newItem)[i].toLowerCase() !== "config" && Object.keys(newItem)[i] !== "actions")
+          if(Object.keys(newItem)[i].toLowerCase() !== "config" && Object.keys(newItem)[i] !== "actions" && Object.keys(newItem)[i] !== "liked")
             newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
         newItem.debugging = 2;
@@ -84,12 +90,13 @@ class Renderer extends Component{
               newConfig = Config
           }
         }
+        console.log(newItem);
         return(
           <div className="vis" key={ "vis" + index }>
             <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } />
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
-              <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
-              <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
+              <FontAwesomeIcon icon={faThumbsUp} className={ newItem.liked? "selected" : "" } data-index={ index } />
+              <FontAwesomeIcon icon={faThumbsDown} className={ (typeof newItem.liked !== "undefined" && !newItem.liked)? "selected" : "" } data-index={ index } />
               <FontAwesomeIcon icon={faTrash} data-index={ index } />
             </div>
           </div>
@@ -103,12 +110,12 @@ class Renderer extends Component{
 
   render(){
     return(
-      <div className="panel left main showPath"
+      <div className="panel left main"
         onDragOver={ (e) => this.onDragOver(e) }
         onDrop={ (e) => this.onDrop(e) }
         key={ "renderer" + this.state.count }>
-        <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Hide Path</span></h2>
-        <p>Select which visualisations you like and which you don't, when you select you will be asked to briefly describe your reasoning behind your decision. Feel free to create as many or few visualisations as you like.</p>
+        <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Show Path</span></h2>
+        <p>Select which visualisations you like and which you don't. You can remove any rendered visualisations whenever you like.</p>
         { this.renderMurvs() }
       </div>
     );

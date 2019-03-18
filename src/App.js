@@ -21,7 +21,7 @@ class App extends Component {
           <h1>Micro-Visualisation Designer
             <Route exact path="/design" render={ (props) => <TimedButton { ...{
                 text: "Next",
-                duration: "3000",
+                duration: "300000",
                 actions:{
                   click: () => this.buttonClick(props)
                 }
