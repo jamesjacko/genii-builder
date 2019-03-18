@@ -3,6 +3,7 @@ import MURV, { Gene as MurvGene } from 'murv-component';
 import Config, { Config1, Config2 } from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { getGeneKey, setGeneResponse } from '../utils/firebase.js';
 
 class Renderer extends Component{
@@ -35,12 +36,21 @@ class Renderer extends Component{
   voteSelected(event){
     event.persist();
     if(event.target.localName === "svg"){
-      for (var i = 0; i < event.target.parentElement.children.length; i++) {
-        event.target.parentElement.children[i].classList.remove('selected');
+      if(event.target.classList.contains('fa-trash')){
+        var arr = [...this.state.genes];
+        arr.splice(event.target.getAttribute('data-index'), 1);
+        this.setState(prevState => ({
+          genes: arr,
+          count: prevState.count + 1
+        }));
+      } else {
+        for (var i = 0; i < event.target.parentElement.children.length; i++) {
+          event.target.parentElement.children[i].classList.remove('selected');
+        }
+        event.target.classList.add('selected');
+        let gene = this.state.genes[event.target.getAttribute('data-index')];
+        setGeneResponse(this.state.key, gene.key, gene.gene, event.target.classList.contains('fa-thumbs-up'));
       }
-      event.target.classList.add('selected');
-      let gene = this.state.genes[event.target.getAttribute('data-index')];
-      setGeneResponse(this.state.key, gene.key, gene.gene, event.target.classList.contains('fa-thumbs-up'));
     }
   }
 
@@ -80,6 +90,7 @@ class Renderer extends Component{
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} data-index={ index } />
+              <FontAwesomeIcon icon={faTrash} data-index={ index } />
             </div>
           </div>
         )
