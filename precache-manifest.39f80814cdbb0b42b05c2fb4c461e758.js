@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/microvis-builder/static/js/runtime~main.76b33df2.js"
   },
   {
-    "revision": "83e114c316fcc3f23f524ec3e1c65984",
-    "url": "/microvis-builder/static/media/Roboto-MediumItalic.83e114c3.woff"
+    "revision": "cc2fadc3928f2f223418887111947b40",
+    "url": "/microvis-builder/static/media/Roboto-BlackItalic.cc2fadc3.woff"
   },
   {
     "revision": "7a29b4bf431fee19b228",
@@ -88,12 +88,12 @@ self.__precacheManifest = [
     "url": "/microvis-builder/static/media/Roboto-Thin.d3b47375.woff"
   },
   {
-    "revision": "35b07eb2f8711ae08d1f58c043880930",
-    "url": "/microvis-builder/static/media/Roboto-Regular.35b07eb2.woff"
-  },
-  {
     "revision": "c73eb1ceba3321a80a0aff13ad373cb4",
     "url": "/microvis-builder/static/media/Roboto-Light.c73eb1ce.woff"
+  },
+  {
+    "revision": "35b07eb2f8711ae08d1f58c043880930",
+    "url": "/microvis-builder/static/media/Roboto-Regular.35b07eb2.woff"
   },
   {
     "revision": "1d6594826615607f6dc860bb49258acb",
@@ -116,6 +116,10 @@ self.__precacheManifest = [
     "url": "/microvis-builder/static/media/Roboto-LightItalic.13efe6cb.woff"
   },
   {
+    "revision": "83e114c316fcc3f23f524ec3e1c65984",
+    "url": "/microvis-builder/static/media/Roboto-MediumItalic.83e114c3.woff"
+  },
+  {
     "revision": "f5902d5ef961717ed263902fc429e6ae",
     "url": "/microvis-builder/static/media/Roboto-RegularItalic.f5902d5e.woff"
   },
@@ -124,15 +128,11 @@ self.__precacheManifest = [
     "url": "/microvis-builder/static/media/Roboto-BoldItalic.4fe0f73c.woff"
   },
   {
-    "revision": "cc2fadc3928f2f223418887111947b40",
-    "url": "/microvis-builder/static/media/Roboto-BlackItalic.cc2fadc3.woff"
-  },
-  {
     "revision": "7a29b4bf431fee19b228",
     "url": "/microvis-builder/static/css/2.eb256bdb.chunk.css"
   },
   {
-    "revision": "233bf014b52568cb097e3e65f44f2205",
+    "revision": "b2f837f23ebf8786cff0b28baf8f0058",
     "url": "/microvis-builder/index.html"
   }
 ];

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/microvis-builder/precache-manifest.41289916cb39e3c246599dbfae37bd6a.js"
+  "/microvis-builder/precache-manifest.39f80814cdbb0b42b05c2fb4c461e758.js"
 );
 
 workbox.clientsClaim();
