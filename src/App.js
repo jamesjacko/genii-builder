@@ -4,6 +4,7 @@ import SurveyWelcome from './components/surveyWelcome';
 import SurveyDesign from './components/surveyDesign';
 import SurveySUS from './components/surveySUS';
 import SurveyQuestions from './components/surveyQuestions';
+import Results from './components/results';
 import TimedButton from './utils/timedButton';
 import {
   BrowserRouter,
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/design" render={(props) => <SurveyDesign { ...props } />} />
           <Route exact path="/sus" render={(props) => <SurveySUS { ...props } title="System Usability Scale" />} />
           <Route exact path="/survey" render={(props) => <SurveyQuestions { ...props } />} />
+          <Route exact path="/results" render={(props) => <Results { ...props } />} />
         </div>
       </BrowserRouter>
     );

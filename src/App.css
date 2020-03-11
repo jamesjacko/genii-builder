@@ -115,6 +115,9 @@ h2 span{
   width:200px;
   height:200px;
 }
+.vis svg{
+  transform: translate(-300px, -300px) scale(0.25);
+}
 .overlay{
   position: absolute;
   top: 0px;

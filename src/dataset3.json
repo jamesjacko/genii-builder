@@ -1,9 +1,9 @@
 {
   "object": {
     "size": {
-      "width": 200,
-      "height": 200,
-      "padding": 10
+      "width": 800,
+      "height": 800,
+      "padding": 50
     },
     "name": "Dataset 3",
     "groups": [
