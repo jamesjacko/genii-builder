@@ -35,6 +35,17 @@ class Property extends Component{
     });
     return values;
   }
+  renderCustom(){
+    let custom
+    if(this.props.value === "path_mode"){
+      custom = <li 
+        className={ "color7" }
+        draggable
+        onDragStart={ (e) => this.onDragStart(e, {prop: this.props.value, value: "custom", item: "custom", mode: 1 }) }
+      >Custom</li>
+    }
+    return custom
+  }
 
   toggle(event){
     event.persist();
@@ -55,6 +66,7 @@ class Property extends Component{
         className="property"
         data-name={ this.props.value.replace("_", " ") }>
           { this.renderValues() }
+          { this.renderCustom() }
         </ul>
       </div>
     )

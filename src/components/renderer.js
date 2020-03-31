@@ -20,10 +20,13 @@ class Renderer extends Component{
   onDrop(event){
     if(event.dataTransfer.getData('gene')){
       let data = JSON.parse(event.dataTransfer.getData('gene'));
-      data = { gene: { ...data }, key: getGeneKey(this.state.key)}
+      let customPath = data.customPath
+      data = { gene: { ...data.values }, key: getGeneKey(this.state.key)}
+      console.log(data)
       this.setState(prevState => ({
           genes: prevState.genes.concat(data),
-          count: prevState.count + 1
+          count: prevState.count + 1,
+          customPath: customPath
       }));
     }
   }
@@ -64,6 +67,17 @@ class Renderer extends Component{
     document.querySelector('.main').classList.toggle('showPath', event.target.checked);
   }
 
+  renderAMURV(newConfig, newItem, index){
+    if(this.state.customPath != ""){
+      return(
+        <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } path={ this.state.customPath } />
+      )
+    }
+    return(
+      <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } />
+    )
+  }
+
   renderMurvs(){
     if(this.state.genes.length > 0){
 
@@ -93,7 +107,8 @@ class Renderer extends Component{
         console.log(newItem);
         return(
           <div className="vis" key={ "vis" + index }>
-            <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } />
+            { this.renderAMURV(newConfig, newItem, index) }
+            
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} className={ newItem.liked? "selected" : "" } data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} className={ (typeof newItem.liked !== "undefined" && !newItem.liked)? "selected" : "" } data-index={ index } />

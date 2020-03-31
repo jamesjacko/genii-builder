@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Property from './property.js';
 import Data from './data.js';
-import CreatePath from './createPath.js';
 
 class ParameterSelector extends Component{
   render(){
@@ -12,7 +11,7 @@ class ParameterSelector extends Component{
         <p className="step">1: Add some data</p>
         <Data />
         <p className="step">2: Select a Path</p>
-        <CreatePath />
+        
         <Property value="path_mode" />
         <p className="step">3: Add some properties</p>
         <Property value="shape" />

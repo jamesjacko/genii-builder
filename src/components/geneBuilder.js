@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import Gene from './gene.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import PathModal from './pathModal';
 
 class GeneBuilder extends Component{
 
   state = {
-    genes: [{}]
+    genes: [{}],
+    showCustomPathModal: false,
+    customPath: "",
+    dataPoints: 10
   }
 
   componentWillMount(){
@@ -25,6 +29,11 @@ class GeneBuilder extends Component{
     if(event.dataTransfer.getData('id')){
       if(JSON.parse(event.dataTransfer.getData('id')).mode === 1){
         let data = JSON.parse(event.dataTransfer.getData('id'));
+        if(data.prop === "path_mode" && data.value === "custom" && this.state.customPath === ""){
+          this.setState({
+            showCustomPathModal: true
+          })
+        }
         if(this.state.genes[index]){
           let arr = [...this.state.genes]
           arr[index][data.prop]=data.item;
@@ -68,11 +77,13 @@ class GeneBuilder extends Component{
     return(
       this.state.genes.map((el, i) => (
           <div key={ "gene"+i } data-index={ i } onDrop={ (e) => this.onDrop(e) } onDragOver={ (e) => this.onDragOver(e) }>
-            <Gene { ...{
+            <Gene values = { {
                 ...el, actions:
                 { remove: this.removeGene.bind(this), copy: this.copyGene.bind(this), index: i }
               }
-            }/>
+            }
+            customPath={ this.state.customPath }
+            />
           </div>
         )
       )
@@ -86,6 +97,26 @@ class GeneBuilder extends Component{
     }))
   }
 
+  handlePath(path){
+    this.setState({
+      customPath: path,
+      showCustomPathModal: false
+    })
+
+  }
+
+  renderCustomPathBuilder(){
+    let modal;
+      if(this.state.showCustomPathModal){
+          modal = <PathModal dataPoints={ this.state.dataPoints } size={ 800 } canvasSize={ 450 } pathHandler={ (path) => this.handlePath(path) } />
+      }
+      return(
+        <div>
+          { modal }
+        </div>
+      )
+  }
+
   render(){
     window.localStorage.setItem("genes", JSON.stringify(this.state.genes));
     return(
@@ -93,6 +124,7 @@ class GeneBuilder extends Component{
         <h2>Genes</h2>
         <p>These are the genes for each visualisation type that you have created. Once a gene is complete you can drag it across to the rendering canvas and you visualisation will be shown. You can change properties of genes and re-render them as you see fit, simply drag them across again to see the new vis.</p>
         { this.renderGenes() }
+        { this.renderCustomPathBuilder() }
         <FontAwesomeIcon icon={faPlusCircle} onClick={ (e) => this.addGene(e) } title="Add Gene" />
       </div>
     );

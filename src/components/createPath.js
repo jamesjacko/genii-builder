@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
+import PathModal from './pathModal'
+
 
 class CreatePath extends Component{
     constructor(props){
         super(props)
         this.state = {
-            showModal: false
+            showModal: false,
+            dataPoints: 10
         }
     }
     loadCreatePathPane(){
         console.log(this.state)
         this.setState({showModal: true})
     }
+    handlePath(path){
+        this.setState({
+            customPath: path
+        });
+        console.log(path)
+    }
     render(){
         let modal;
         if(this.state.showModal){
-            modal = <p>Hello</p>
+            modal = <PathModal dataPoints={ this.state.dataPoints } size={ 800 } canvasSize={ 450 } pathHandler={ (path) => this.handlePath(path) } />
         }
         return(
             <div>
