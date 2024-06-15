@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div className="App">
-          <h1>Micro-Visualisation Designer
+          <h1>GENII Designer
             <Route exact path="/design" render={ (props) => <TimedButton { ...{
                 text: "Next",
                 duration: "300000",
@@ -28,8 +28,7 @@ class App extends Component {
                 }
             } } /> } />
           </h1>
-          <Route exact path="/" render={(props) => <SurveyWelcome { ...props } />} />
-          <Route exact path="/design" render={(props) => <SurveyDesign { ...props } />} />
+          <Route exact path="/" render={(props) => <SurveyDesign { ...props } />} />
           <Route exact path="/sus" render={(props) => <SurveySUS { ...props } title="System Usability Scale" />} />
           <Route exact path="/survey" render={(props) => <SurveyQuestions { ...props } />} />
           <Route exact path="/results" render={(props) => <Results { ...props } />} />

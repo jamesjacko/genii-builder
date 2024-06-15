@@ -343,7 +343,7 @@ svg *{
 }
 .gene svg{
   position: absolute;
-  z-index: 101;
+  z-index: 4;
   color: #FFF;
   right: 0;
   top: 5px;
@@ -453,15 +453,43 @@ svg *{
   font-weight: bold;
 }
 .gene li.stylabale:not(.config){
-  z-index:100;
+  z-index:3;
   position:relative;
   left:auto;
   top:auto;
 }
 .gene li.config{
-  z-index: 100;
+  z-index: 3;
 }
 iframe{
   box-shadow: 0px 0px 2px #000000;
   border:2px solid #FFF;
+}
+.pathModalContainer{
+  width: 100vw;
+  height: 100vh;
+  background: #000000CC;
+  position: fixed;
+  top:0px;
+  left: 0px;
+  z-index: 5;
+}
+.pathModal{
+  width: 500px;
+  background: #FFF;
+  box-shadow: 0px 0px 2px #000;
+  position: fixed;
+  top: calc(calc(100vh - 500px) / 2);
+  left: calc(calc(100vw - 500px) / 2);
+}
+.pathModal p{
+  margin: 0 0 0 10px;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+}
+.pathCanvas{
+  outline: 1px solid #CCC;
+  margin: 10px 25px 20px;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getOpenResponses, getMURVGenes } from "../utils/firebase";
-import MURV, { Gene as MurvGene } from 'murv-component';
+import GENII, { Gene as GENIIGene } from 'genii-component';
 import Config, { Config1, Config2 } from '../config.js';
 
  class Results extends Component{
@@ -87,10 +87,10 @@ import Config, { Config1, Config2 } from '../config.js';
          if(Object.keys(item)[i] !== "config" && Object.keys(item)[i] !== "actions" && Object.keys(item)[i] !== "liked"){
          console.log(Object.keys(item)[i])
          if(typeof Object.keys(item)[i] === "string")
-          newGene[Object.keys(item)[i]] = MurvGene[Object.keys(item)[i]][Object.values(item)[i]]
+          newGene[Object.keys(item)[i]] = GENIIGene[Object.keys(item)[i]][Object.values(item)[i]]
         }
        }
-       let gene = new MurvGene(item);
+       let gene = new GENIIGene(item);
        let config;
        switch (item.config) {
          case "Dataset_2":
@@ -106,7 +106,7 @@ import Config, { Config1, Config2 } from '../config.js';
        config.data.dataset.object.size.height = 200;
        config.data.dataset.object.size.padding = 20;
        return(
-           <MURV gene={ newGene } key={ "murv" + index } config={ config } />
+           <GENII gene={ newGene } key={ "murv" + index } config={ config } />
        )
      });
      console.log(murvs);

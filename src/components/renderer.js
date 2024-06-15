@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MURV, { Gene as MurvGene } from 'murv-component';
+import GENII, { Gene as GENIIGene } from 'genii-component';
 import Config, { Config1, Config2 } from '../config.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
@@ -20,10 +20,13 @@ class Renderer extends Component{
   onDrop(event){
     if(event.dataTransfer.getData('gene')){
       let data = JSON.parse(event.dataTransfer.getData('gene'));
-      data = { gene: { ...data }, key: getGeneKey(this.state.key)}
+      let customPath = data.customPath
+      data = { gene: { ...data.values }, key: getGeneKey(this.state.key)}
+      console.log(data)
       this.setState(prevState => ({
           genes: prevState.genes.concat(data),
-          count: prevState.count + 1
+          count: prevState.count + 1,
+          customPath: customPath
       }));
     }
   }
@@ -64,17 +67,28 @@ class Renderer extends Component{
     document.querySelector('.main').classList.toggle('showPath', event.target.checked);
   }
 
-  renderMurvs(){
+  renderAGENII(newConfig, newItem, index){
+    if(this.state.customPath != ""){
+      return(
+        <GENII config={ newConfig } gene={ new GENIIGene(newItem) } key={ index } path={ this.state.customPath } />
+      )
+    }
+    return(
+      <GENII config={ newConfig } gene={ new GENIIGene(newItem) } key={ index } />
+    )
+  }
+
+  renderGENIIs(){
     if(this.state.genes.length > 0){
 
-      const murvs = this.state.genes.map((item, index) => {
+      const GENIIs = this.state.genes.map((item, index) => {
 
 
         let newItem = { ...item.gene };
 
         for (var i = 0; i < Object.values(newItem).length; i++) {
           if(Object.keys(newItem)[i].toLowerCase() !== "config" && Object.keys(newItem)[i] !== "actions" && Object.keys(newItem)[i] !== "liked")
-            newItem[Object.keys(newItem)[i]] = MurvGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
+            newItem[Object.keys(newItem)[i]] = GENIIGene[Object.keys(newItem)[i]][Object.values(newItem)[i]];
         }
         newItem.debugging = 2;
         let newConfig = Config;
@@ -93,7 +107,8 @@ class Renderer extends Component{
         console.log(newItem);
         return(
           <div className="vis" key={ "vis" + index }>
-            <MURV config={ newConfig } gene={ new MurvGene(newItem) } key={ index } />
+            { this.renderAGENII(newConfig, newItem, index) }
+            
             <div className="overlay" onClick={ (e) => this.voteSelected(e) }>
               <FontAwesomeIcon icon={faThumbsUp} className={ newItem.liked? "selected" : "" } data-index={ index } />
               <FontAwesomeIcon icon={faThumbsDown} className={ (typeof newItem.liked !== "undefined" && !newItem.liked)? "selected" : "" } data-index={ index } />
@@ -102,7 +117,7 @@ class Renderer extends Component{
           </div>
         )
       });
-      return murvs;
+      return GENIIs;
     } else {
       return;
     }
@@ -116,7 +131,7 @@ class Renderer extends Component{
         key={ "renderer" + this.state.count }>
         <h2>Rendered Visualisations <span><input type="checkbox" onChange={ (e) => this.togglePath(e) } />Show Path</span></h2>
         <p>Select which visualisations you like and which you don't. You can remove any rendered visualisations whenever you like.</p>
-        { this.renderMurvs() }
+        { this.renderGENIIs() }
       </div>
     );
   }
