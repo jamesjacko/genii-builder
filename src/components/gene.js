@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Gene as MurvGene } from 'murv-component';
+import { Gene as GENIIGene } from 'genii-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCopy } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,7 +13,7 @@ class Gene extends Component{
   renderGene(){
     return Object.keys(this.props.values).map((item, i) => {
       if(Object.keys(this.props.values)[i] !== "actions"){
-        MurvGene.config = {
+        GENIIGene.config = {
           Dataset_1: 1,
           Dataset_2: 2,
           Dataset_3: 3
@@ -24,7 +24,7 @@ class Gene extends Component{
             data-value = { Object.values(this.props.values)[i].toLowerCase().replace("_", " ") }
             data-prop = { Object.keys(this.props.values)[i].toLowerCase() === "config"? "data" : Object.keys(this.props.values)[i].toLowerCase()}
             className={ "color" + 
-              (typeof MurvGene[Object.keys(this.props.values)[i]][Object.values(this.props.values)[i]] === "undefined" ? "7" : MurvGene[Object.keys(this.props.values)[i]][Object.values(this.props.values)[i]]) + " " + Object.keys(this.props.values)[i].toLowerCase() +
+              (typeof GENIIGene[Object.keys(this.props.values)[i]][Object.values(this.props.values)[i]] === "undefined" ? "7" : GENIIGene[Object.keys(this.props.values)[i]][Object.values(this.props.values)[i]]) + " " + Object.keys(this.props.values)[i].toLowerCase() +
               (Object.keys(this.props.values)[i].toLowerCase() === "path_mode"? "" : " stylabale") }
             // style={ Object.keys(this.props.values)[i].toLowerCase() === "path_mode"? {} : { 'left' : "calc(" + ((i - 1) * 22) + "% + 27px)", zIndex : "2" } }
             >
